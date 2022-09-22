@@ -225,7 +225,7 @@ public class Project1 {
 
         }
         else if (selection.equals("4")){ //Check for primes
-
+//
         }
         else if (selection.equals("5")){ //Enter a new list
             input = readList();
