@@ -222,7 +222,7 @@ public class Project1 {
             displayOrderedList(inputs);
         }
         else if (selection.equals("3")){ //Number of Odd / Even
-
+//do stuff
         }
         else if (selection.equals("4")){ //Check for primes
 
