@@ -5,11 +5,7 @@ import java.util.Scanner;
 public class Project1 {
     //globals
 
-    static String[] input; //user input
-    static int[] inputs; //array of integers parsed from input
 
-    static int count, mode, min, max, range, even, odd, prime;
-    static double mean, median, variance, stdev;
     public static String[] readList(){
         Scanner in = new Scanner(System.in);
 
@@ -39,32 +35,7 @@ public class Project1 {
      */
     public static void displayStats(int[] arr){
 
-        getStats(arr);
 
-        //Print statistics
-        System.out.printf("" +
-                        "Min: " + min + "\n" +
-                        "Max: " + max + "\n" +
-                        "Count: " + count + "\n" +
-                        "Range: " + range + "\n" +
-                        "Median " + median + "\n" +
-                         "Mean: " + mean + "\n"
-        );
-
-        // Print mode
-        if ((mode > -1)) {
-            System.out.println("Mode: " + mode);
-        } else {
-            System.out.println("Mode: No Mode");
-        }
-
-        //Print Variance and Standard Deviation
-        System.out.printf("" +
-                "Variance %.2f\n" +
-                "Standard Deviation %.2f\n",
-                variance,
-                stdev
-        );
     }
 
     /**
@@ -72,15 +43,7 @@ public class Project1 {
      * @param arr The array of user inputs
      */
     public static void getStats(int[] arr){
-        count = count(arr);
-        mean = mean(arr);
-        median = median(arr);
-        mode = (mode(arr) > -1) ? arr[mode(arr)] : -1;
-        min = min(arr);
-        max = max(arr);
-        range = range(arr);
-        variance = variance(arr);
-        stdev = stDev(arr);
+
 
         //Math.round((variance(arr)) * 100.0) / 100.0;
     }
@@ -186,13 +149,33 @@ public class Project1 {
         //return Math.ceil(Math.pow(variance(arr), .5) * 100.0) / 100.0;
     };
     public static void main(String[] args) {
+
+        String[] input; //user input
+        int[] inputs;   //array of integers parsed from input
+
+        int count, mode, min, max, range, even, odd, prime; //Integer variables
+        double mean, median, variance, stdev;               //Floating point variables
+
+        //Take user input to analyze
         input = readList();
+
+        //Parses inputs to an integer array
         inputs = getNums(input, input.length);
 
-        for (int i = 0; i < inputs.length; i++){
-            System.out.print("Num: " + inputs[i]+" ");
-        }
 
+        //Assigns proper values to variables
+        count = count(inputs);
+        mean = mean(inputs);
+        median = median(inputs);
+        mode = (mode(inputs) > -1) ? inputs[mode(inputs)] : -1;
+        min = min(inputs);
+        max = max(inputs);
+        range = range(inputs);
+        variance = variance(inputs);
+        stdev = stDev(inputs);
+
+
+        //Print Menu
         System.out.printf("\n" +
                 "Please make a selection: \n" +
                 "1) Display List Statistics\n" +
@@ -202,11 +185,38 @@ public class Project1 {
                 "5) Enter New List\n" +
                 "exit) Quit Program\n"
         );
+
+        //Gets Menu Option
         Scanner stdin = new Scanner(System.in);
         String selection = stdin.next();
 
+        //Executes appropriate menu option selected by user
         if (selection.equals("1")) { //Display List Stats
-            displayStats(inputs);
+
+            //Print statistics
+            System.out.printf("" +
+                    "Min: " + min + "\n" +
+                    "Max: " + max + "\n" +
+                    "Count: " + count + "\n" +
+                    "Range: " + range + "\n" +
+                    "Median " + median + "\n" +
+                    "Mean: " + mean + "\n"
+            );
+
+            // Print mode
+            if ((mode > -1)) {
+                System.out.println("Mode: " + mode);
+            } else {
+                System.out.println("Mode: No Mode");
+            }
+
+            //Print Variance and Standard Deviation
+            System.out.printf("" +
+                            "Variance %.2f\n" +
+                            "Standard Deviation %.2f\n",
+                    variance,
+                    stdev
+            );
         }
         else if (selection.equals("2")){ // Display List Ordered
             displayOrderedList(inputs);
